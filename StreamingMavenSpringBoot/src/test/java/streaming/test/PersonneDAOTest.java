@@ -5,37 +5,46 @@
  */
 package streaming.test;
 
-import streaming.spring.SpringConfig;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-import streaming.dao.PaysDAO;
-
-import streaming.entity.Film;
-import streaming.entity.Pays;
+import streaming.dao.PersonneDAO;
+import streaming.entity.Personne;
+import streaming.spring.SpringConfig;
 
 /**
  *
- * @author ETY
+ * @author Laurent-LIM
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes=SpringConfig.class)
-public class PaysDAOTest {
+public class PersonneDAOTest {
+
+    @Before
+    public void setUp() {
+    }
     
     @Autowired
-    private PaysDAO dao;
+    private PersonneDAO pdao;
+    
+    //@Test
+    public void ajouter(){
+        Personne p = new Personne();
+        p.setNom("Tintin");
+        pdao.ajouter(p);
+    }
     
     @Test
-    public void ajouter(){
-        Pays p = new Pays();
-        p.setNom("FRANCE");
-        dao.ajouter(p);
+    public void lister(){
+        Assert.assertTrue(pdao.personnes().size()>17);
     }
-
+    
+    
+    
 }
