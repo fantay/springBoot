@@ -1,17 +1,20 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package streaming.dao;
+package streaming.service;
 
+import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
-import streaming.entity.Episode;
+import streaming.entity.Film;
 
 /**
  *
  * @author Laurent-LIM
  */
-public interface EpisodeDAO extends CrudRepository<Episode, Long>{
+public interface FilmServiceCRUD extends CrudRepository <Film, Long>{
+    
+    
     
 }
