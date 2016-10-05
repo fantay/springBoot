@@ -14,7 +14,7 @@ import streaming.entity.Personne;
  */
 public interface PersonneServiceCRUD extends CrudRepository<Personne, Long>{
     
-    public Personne findOneByPrenomAndNom(String p, String n);
+    public Personne findOneByPrenomAndNom(String prenom, String nom);
     
     
 }
