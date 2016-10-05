@@ -5,6 +5,7 @@
  */
 package streaming.test;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,9 +13,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import streaming.entity.Film;
+import streaming.entity.Personne;
+import streaming.service.PersonneServiceCRUD;
 import streaming.spring.SpringConfig;
-import streaming.service.FilmServiceCRUD;
 
 /**
  *
@@ -23,22 +24,29 @@ import streaming.service.FilmServiceCRUD;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes=SpringConfig.class)
-public class FilmDAOTest {
+
+public class PersonneServiceCRUDTest {
     
     @Autowired
-    private FilmServiceCRUD dao;
+    private PersonneServiceCRUD psc;
     
     @Before
     public void setUp() {
-        
+        psc.deleteAll();
+        Personne p = new Personne();
+        p.setNom("Tintin");
+        p.setPrenom("Milou");
+        psc.save(p);
     }
     
     @Test
-    public void ajouter2Films(){
-        
-        dao.save(new Film());
-        dao.save(new Film());
+    public void findOneOK(){
+       Personne p = psc.findOneByPrenomAndNom("Milou", "Tintin");
+       Assert.assertEquals("Tintin", p.getNom());
+       Assert.assertEquals("Milou", p.getPrenom());
     }
+    
+    
     
     
 }
